@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YEA</title>
+</head>
+<body>
+    {% for item in content %}
+        {% if item["html"] %}
+            {{item.html | safe}}
+        {% elif item["image"] %}
+           {{item.image}}
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
