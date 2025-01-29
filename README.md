@@ -3,7 +3,7 @@
 
 > This is a webapp to read a epub extension file (Ebook)  
 > It's not complete  
-> Currently it just returns a raw page of the html content
+> Currently it just returns a raw page of the html content  
 > if the ebook has a protection like DRM, it will not work.  
 
 ### Installation  
