@@ -1,5 +1,5 @@
 # EBOOK READER (.epub)
-| 2025.01.29 - Version 0.0.2 |
+| 2025.01.31 - Version 0.0.2 |
 
 > This is a webapp to read a epub extension file (Ebook)  
 > It's not complete  
@@ -13,11 +13,32 @@
     - Windows: `.\.ebook_reader_venv\Sripts\activate`  
     - Mac/Linux: `source ebook_reader_venv/bin/activate`  
 3. Install requirements: `pip install requirements.txt`  
-4. Put a file into the `/ebooks` folder and call it `book.epub`  
-5. run into the terminal: `flask run`  
-6. Go to the ip address provided by the terminal ( usually is http://127.0.0.1:5000 )  
+
+
+### Get Started
+1. Put a file into the `/ebooks` folder and call it `book.epub`  
+2. run the module to extract the images and save it to the static folder.  
+3. run into the terminal: `flask run`  
+4. Go to the ip address provided by the terminal ( usually is http://127.0.0.1:5000 )  
   
   
+
+
+
+
+### Changelog:  
+> 2025.01.31 - `version 0.0.2`  
+- Added an image extractor module to store in local the ebook images.  
+- Rendering of the book, currently the images are not in order.  
+
+> 2025.01.29 - `version 0.0.1`  
+- Added flask implementation with a single route, to show the content.
+
+> 2025.01.29 - `version 0.0.0`  
+- First implementation, just printed the content.  
+
+_______
+   
 #### todo:  
 - Fix the the image data render, store it (or not) then convert into base64 and show into the html page.  
 - would be nice if I find a way to divide all the data in chunks, and create a pagination.  
