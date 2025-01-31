@@ -19,7 +19,7 @@
   
   
 #### todo:  
-- Fix the the image data render, store it (or not) then convert into base64 and show into the html page.
+- Fix the the image data render, store it (or not) then convert into base64 and show into the html page.  
 - would be nice if I find a way to divide all the data in chunks, and create a pagination.  
 - adding an argument into the command to change the book name making it possible to select the book to read.  
 

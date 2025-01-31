@@ -4,16 +4,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>YEA</title>
+    <style>
+        body{
+            margin-top: 200px;
+            padding-left: calc(100vw / 4);
+            padding-right: calc(100vw / 4);
+        }
+        .image{
+            scale: 0.7;
+        }
+    </style>
     </head>
     <body>
-        <!-- {{book}} -->
         {% for element in book %}
-            {% if element.data %}
-                {% if element.is_image %}
-                    <img src="data:image/jpeg;base64,{{element.data}}">
-                {% else %}
-                    {{element.data | safe}}
-                {% endif %}
+            {% if element.is_image %}
+                <div class="image">
+                    <img loading="lazy" src="{{element.url}}">
+                </div>
+            {% elif not element.is_image %}
+                {{element.data | safe}}
             {% endif %}
         {% endfor %}
     </body>
