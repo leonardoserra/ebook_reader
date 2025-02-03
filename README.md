@@ -17,16 +17,17 @@
 
 ### Get Started
 1. Put a file into the `/ebooks` folder and call it `book.epub`  
-2. run the module to extract the images and save it to the static folder.  
-3. run into the terminal: `flask run`  
+2. run into the terminal: `flask run`  
 4. Go to the ip address provided by the terminal ( usually is http://127.0.0.1:5000 )  
-  
-  
-
-
-
-
+    
 ### Changelog:  
+> 2025.02.03 - `version 0.0.3`  
+- Changed the module names from 'book' to 'ebook'. 
+- Added a base64 decoding to directly pass to the template the images loaded, without the necessity to store them locally into the static folder.
+- removed `pillow` package
+- removed `beautifulsoup4` and `soupsieve` packages
+- added a todo.md file, with all the features or fix.  
+  
 > 2025.01.31 - `version 0.0.2`  
 - Added an image extractor module to store in local the ebook images.  
 - Rendering of the book, currently the images are not in order.  
@@ -38,14 +39,8 @@
 - First implementation, just printed the content.  
 
 _______
-   
-#### todo:  
-- Fix the the image data render, store it (or not) then convert into base64 and show into the html page.  
-- would be nice if I find a way to divide all the data in chunks, and create a pagination.  
-- adding an argument into the command to change the book name making it possible to select the book to read.  
 
 #### References Docs
 
 - [Flask](https://flask.palletsprojects.com/en/stable/quickstart)  
 - [EbookLib](https://docs.sourcefabric.org/projects/ebooklib/en/latest/tutorial.html)  
-- [Pillow](https://pillow.readthedocs.io/en/stable/installation/basic-installation.html)  

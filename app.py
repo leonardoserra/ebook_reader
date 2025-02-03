@@ -1,12 +1,17 @@
 from flask import Flask
 from flask import render_template
-import book_manager
+import ebook_manager
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
+    ebook_name = "book.epub"
+    parsed_ebook= ebook_manager.extract_book_content(ebook_name)
 
-    book = book_manager.extract_book_content()
+    ctx = {
+        "ebook_name": ebook_name,
+        "ebook":parsed_ebook,
+    }
     
-    return render_template("index.html", book=book)
+    return render_template("index.html",**ctx)
