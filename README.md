@@ -21,6 +21,9 @@
 4. Go to the ip address provided by the terminal ( usually is http://127.0.0.1:5000 )  
     
 ### Changelog:  
+> 2025.02.03 - `version 0.0.5`  
+- changed font
+
 > 2025.02.03 - `version 0.0.4`  
 - Now the landing page is the page where to choose the book from the ebooks folder.  
 - Added the `read/<ebook_name>` route to open different books.
