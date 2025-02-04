@@ -22,7 +22,9 @@
     
 ### Changelog:  
 > 2025.02.03 - `version 0.0.5`  
-- changed font
+- Added 404 and 500 error page.
+- Changed font.
+- Some style on the ebook list menu.
 
 > 2025.02.03 - `version 0.0.4`  
 - Now the landing page is the page where to choose the book from the ebooks folder.  
@@ -32,8 +34,8 @@
 > 2025.02.03 - `version 0.0.3`  
 - Changed the module names from 'book' to 'ebook'. 
 - Added a base64 decoding to directly pass to the template the images loaded, without the necessity to store them locally into the static folder.
-- removed `pillow` package
-- removed `beautifulsoup4` and `soupsieve` packages
+- removed `pillow` package.
+- removed `beautifulsoup4` and `soupsieve` packages.
 - added a todo.md file, with all the features or fix.  
   
 > 2025.01.31 - `version 0.0.2`  

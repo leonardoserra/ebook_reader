@@ -1,5 +1,6 @@
 import base64
 from os import walk
+# from os import path # con questo potresti prendere la dimensione dei file e mostrarla.
 import ebooklib
 from ebooklib import epub
 EBOOKS_PATH = "./ebooks"
@@ -12,7 +13,7 @@ def choose_book():
         ebooks.extend(filenames)
         break
     
-    ebooks.remove('.gitignore')
+    ebooks = [e for e in ebooks if e.endswith('.epub')]
 
     return ebooks
 
