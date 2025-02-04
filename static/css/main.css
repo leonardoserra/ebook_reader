@@ -1,0 +1,24 @@
+body{
+    margin-top: 200px;
+    padding-left: calc(100vw / 4);
+    padding-right: calc(100vw / 4);
+    font-family: serif;
+}
+
+img{
+    max-width: 100%;
+}
+
+#epub-list{
+    max-width: 500px;
+    min-width: 200px;
+    list-style-type: none;
+    border: 2px solid grey;
+    box-shadow: 2px 5px black;
+    padding: 20px 7px;
+}
+
+.epub-titles{
+    padding: 5px 10px;
+    text-decoration: none;
+}

@@ -21,6 +21,11 @@
 4. Go to the ip address provided by the terminal ( usually is http://127.0.0.1:5000 )  
     
 ### Changelog:  
+> 2025.02.03 - `version 0.0.4`  
+- Now the landing page is the page where to choose the book from the ebooks folder.  
+- Added the `read/<ebook_name>` route to open different books.
+- added some style in the `static/css/main.css` file.
+
 > 2025.02.03 - `version 0.0.3`  
 - Changed the module names from 'book' to 'ebook'. 
 - Added a base64 decoding to directly pass to the template the images loaded, without the necessity to store them locally into the static folder.

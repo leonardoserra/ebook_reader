@@ -3,20 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ebook_name}}</title>
-    <style>
-        body{
-            margin-top: 200px;
-            padding-left: calc(100vw / 4);
-            padding-right: calc(100vw / 4);
-            font-family: serif;
-        }
-        img{
-            max-width: 100%;
-        }
-    </style>
+        <title>{{page_title}}</title>
+        <link rel="stylesheet" href="/static/css/main.css">
     </head>
     <body>
-        {{ebook | safe}}
+        <nav>
+            <h3>Choose a book to read:</h3>
+            <ul id="epub-list">
+                {% for ebook in ebooks %}
+                <li>
+                    <a class="epub-titles" href="/read/{{ebook}}">{{ebook}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
     </body>
 </html>

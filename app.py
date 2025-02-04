@@ -6,12 +6,22 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    ebook_name = "book.epub"
-    parsed_ebook= ebook_manager.extract_book_content(ebook_name)
+    ebooks= ebook_manager.choose_book()
 
     ctx = {
-        "ebook_name": ebook_name,
+        "page_title": "Collection",
+        "ebooks":ebooks,
+    }
+
+    return render_template("index.html",**ctx)
+
+
+@app.route("/read/<ebook_name>")
+def read_ebook(ebook_name = "book.epub"):
+    parsed_ebook= ebook_manager.extract_book_content(ebook_name)
+    ctx = {
+        "page_title": ebook_name,
         "ebook":parsed_ebook,
     }
     
-    return render_template("index.html",**ctx)
+    return render_template("read.html",**ctx)

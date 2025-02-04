@@ -1,7 +1,20 @@
 import base64
-
+from os import walk
 import ebooklib
 from ebooklib import epub
+EBOOKS_PATH = "./ebooks"
+
+def choose_book():
+
+    ebooks = []
+    for (dirpath, dirnames, filenames) in walk(EBOOKS_PATH):
+
+        ebooks.extend(filenames)
+        break
+    
+    ebooks.remove('.gitignore')
+
+    return ebooks
 
 
 def extract_book_content(ebook_name: str = "book.epub") -> list[dict]:
@@ -12,7 +25,7 @@ def extract_book_content(ebook_name: str = "book.epub") -> list[dict]:
 
     """
 
-    ebook = epub.read_epub(f"ebooks/{ebook_name}")
+    ebook = epub.read_epub(f"{EBOOKS_PATH}/{ebook_name}")
 
     documents = []
 
@@ -37,7 +50,6 @@ def extract_book_content(ebook_name: str = "book.epub") -> list[dict]:
             images[name] = src
     
     full_content = ''.join(list(documents))
-
 
     for k,v in images.items():
         if k in full_content:
