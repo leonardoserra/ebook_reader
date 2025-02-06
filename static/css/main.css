@@ -1,3 +1,13 @@
+:root{
+    --text-color:#353131;
+}
+
+*:not(main *){
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
 html{
     position: relative;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -7,7 +17,10 @@ body{
     margin-top: 35px;
     padding-left: calc(100vw / 4);
     padding-right: calc(100vw / 4);
+    color:var(--text-color);
+    min-height: calc(100vh - 35px);
 }
+
 
 img{
     max-width: 100%;
@@ -27,6 +40,10 @@ img{
     border: 2px solid grey;
     box-shadow: 2px 5px black;
     padding: 20px 15px;
+    li{
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 #ebook-list-fixed-button{
@@ -58,6 +75,7 @@ img{
 }
 
 .pages-navigation{
+    /* currently not used */
     justify-content: center;
     width: 300px;
     position: fixed;
@@ -67,11 +85,13 @@ img{
     display: flex;
     justify-content: space-around;
     list-style-type: none;
-    
-        a{
-            text-decoration: none;
-            &:active{
-                color: black;
-            }
-        }
+}
+
+a{
+    text-decoration: none;
+    color: var(--text-color);
+    &:active,
+    &:visited{
+        color: var(--text-color);
+    }
 }
