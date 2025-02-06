@@ -46,31 +46,33 @@ img{
     }
 }
 
-#ebook-list-fixed-button{
+#ebook-list-fixed{
     position: fixed;
     top:35px;
     left:calc(100vw / 24);
+}
+
+.nice-border{
     border: 2px solid grey;
     box-shadow: 2px 5px black;
 }
-
 
 .epub-titles{
     padding: 5px 10px;
     text-decoration: none;
 }
 
-#prev-page-fixed-button,
-#next-page-fixed-button{
+#prev-page-fixed-arrow,
+#next-page-fixed-arrow{
     position: fixed;
     top:50vh;
     scale:3;
     text-decoration: none;
 }
-#prev-page-fixed-button{
+#prev-page-fixed-arrow{
     left:calc(100vw / 12);
 }
-#next-page-fixed-button{
+#next-page-fixed-arrow{
     right:calc(100vw / 12);
 }
 
@@ -85,6 +87,9 @@ img{
     display: flex;
     justify-content: space-around;
     list-style-type: none;
+    .current-page{
+        transform: scale(1.2);
+    }
 }
 
 a{
