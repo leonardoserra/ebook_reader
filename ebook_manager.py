@@ -1,6 +1,6 @@
 import os
 import base64
-
+import json
 from functools import cache
 
 from bs4 import BeautifulSoup
@@ -35,6 +35,8 @@ def extract_book_content(ebook_name: str) -> str:
     :param ebook_name: the name of the epub you wanna read.
 
     """
+
+    create_current_state()
 
     raw_ebook = epub.read_epub(f"{EBOOKS_PATH}/{ebook_name}")
 
@@ -100,18 +102,30 @@ def pages_range(page_index: int, page_count: int) -> tuple[int, int]:
     return limits
 
 
-# TODO
-def create_current_state(): ...  # def that will create the state.json if not existing.
+def create_current_state() -> None:
+
+    if os.path.isfile(f"static/state.json"):
+        return
+
+    with open("static/state.json", "x") as file:
+        file.write(json.dumps({})) 
+        
+
+
 def update_current_state(): ...  # def that will save into the state.json the name.
 
 
 def add_fav_book(ebook_name: str) -> bool: ...  # this will set the fav bool to true.
+
+
 def remove_fav_book(ebook_name: str) -> bool: ...  # this will set the fav bool to true.
 
 
 def add_fav_page(
     ebook_name: str, page_index: int
 ) -> bool: ...  # this will add the index of the fav ebook pages to the state.json file.
+
+
 def remove_fav_page(
     ebook_name: str, page_index: int
 ) -> bool: ...  # this will add the index of the fav ebook pages to the state.json file.
@@ -120,6 +134,8 @@ def remove_fav_page(
 def rename_ebook(
     ebook_name: str, new_name: str
 ) -> bool: ...  # edit the filename in the menu.
+
+
 def delete_ebook(ebook_name: str) -> bool: ...  # delete an ebook from the folder.
 
 
