@@ -1,0 +1,38 @@
+{% extends "layout.j2"%}
+{% block body %}
+<body>
+    <div id="ebook-list-fixed-button">
+        <a class="epub-titles" href="/">Back to Ebook List</a>
+    </div>
+    {% if page_content %}
+        <main>
+            {{page_content }}
+        </main>
+        <footer>
+
+            {% if page_index %}
+                <a id="prev-page-fixed-button" href="/read/{{page_title}}/{{page_index - 1}}">&xlarr;</a>
+            {% endif %}
+
+            {% if page_index < page_count - 1 %}
+                <a id="next-page-fixed-button" href="/read/{{page_title}}/{{page_index + 1}}">&xrarr;</a>
+            {% endif %}
+            
+            {#
+                <ul class="pages-navigation">
+                    {% for p in range(limits[0], limits[1]) %}
+                        {% set current_page = 'current-page' if p == page_index else '' %}
+                        <li> 
+                            <a class='{{current_page}}' href="/read/{{page_title}}/{{p}}">
+                                pag.{{p}}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            #}
+
+        </footer>
+    {% endif %}
+
+</body> 
+{% endblock %}

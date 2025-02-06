@@ -1,0 +1,25 @@
+{% extends "layout.j2"%}
+{% block body %}    
+    <body>
+        <nav id="ebooks-menu">
+        {% if ebooks %}
+        <h3>Choose a book to read:</h3>
+        <ul id="epub-list">
+            {% for ebook in ebooks %}
+            <li>
+                <a class="epub-titles" href="/read/{{ebook}}/0">{{ebook}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else%}
+        <h3>Choose a book to read:</h3>
+        <ul id="epub-list">
+            <li>
+                <p>No epub in the "ebooks/" folder! Add to start reading.</p>
+            </li>
+        </ul>
+        {% endif %}
+    </nav>
+
+</body>
+{% endblock %}

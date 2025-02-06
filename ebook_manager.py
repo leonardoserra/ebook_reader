@@ -1,24 +1,32 @@
 import base64
+
 from os import walk
+from functools import cache
+
+from bs4 import BeautifulSoup
+
 # from os import path # con questo potresti prendere la dimensione dei file e mostrarla.
 import ebooklib
 from ebooklib import epub
+
 EBOOKS_PATH = "./ebooks"
+
 
 def choose_book():
 
     ebooks = []
-    for (dirpath, dirnames, filenames) in walk(EBOOKS_PATH):
+    for _, __, filenames in walk(EBOOKS_PATH):
 
         ebooks.extend(filenames)
         break
-    
-    ebooks = [e for e in ebooks if e.endswith('.epub')]
+
+    ebooks = [e for e in ebooks if e.endswith(".epub")]
 
     return ebooks
 
 
-def extract_book_content(ebook_name: str = "book.epub") -> list[dict]:
+@cache
+def extract_book_content(ebook_name: str) -> str:
     """
     Given a epub name it opens, loads and pass the value to the main route.
 
@@ -26,17 +34,17 @@ def extract_book_content(ebook_name: str = "book.epub") -> list[dict]:
 
     """
 
-    ebook = epub.read_epub(f"{EBOOKS_PATH}/{ebook_name}")
+    raw_ebook = epub.read_epub(f"{EBOOKS_PATH}/{ebook_name}")
 
     documents = []
 
     images = {}
 
-    for item in ebook.get_items():
+    for item in raw_ebook.get_items():
 
         if item.get_type() == ebooklib.ITEM_DOCUMENT:
 
-            html = item.get_body_content().decode('utf-8')
+            html = item.get_body_content().decode("utf-8")
             documents.append(html)
 
         if item.get_type() in (ebooklib.ITEM_IMAGE, ebooklib.ITEM_COVER):
@@ -49,11 +57,38 @@ def extract_book_content(ebook_name: str = "book.epub") -> list[dict]:
 
             src = f"data:image/{file_extension};base64,{converted_base64}"
             images[name] = src
-    
-    full_content = ''.join(list(documents))
 
-    for k,v in images.items():
-        if k in full_content:
-            full_content = full_content.replace(k, v)
+    parsed_ebook = "".join(list(documents))
 
-    return full_content
+    for k, v in images.items():
+        if k in parsed_ebook:
+            parsed_ebook = parsed_ebook.replace(k, v)
+
+    return parsed_ebook
+
+
+@cache
+def extract_page(ebook_name: str, page_index: int) -> tuple[str, int]:
+
+    parsed_ebook = extract_book_content(ebook_name)
+
+    pages = [
+        p.strip().strip("&#13;")
+        for p in parsed_ebook.split("</div>")
+        if p.strip().strip("&#13;")
+    ]
+    page_count = len(pages)
+
+    page_content = BeautifulSoup(pages[page_index].strip(), "html.parser")
+
+    return page_content, page_count
+
+
+def pages_range(page_index, page_count) -> tuple[int, int]:
+
+    prev = page_index - 3
+    post = page_index + 3
+
+    limits = (prev if prev >= 0 else 0, post if post < page_count else 0)
+
+    return limits

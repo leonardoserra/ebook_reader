@@ -1,2 +1,2 @@
-`put your .epub files here`  
-`do not delete the .gitignore file`
+Put your .epub files here.  
+ Do not delete the `.gitignore` file.  

@@ -1,9 +1,9 @@
 # EBOOK READER (.epub)
-| 2025.01.31 - Version 0.0.2 |
+| 2025.01.31 - Version 0.0.6 |  
 
 > This is a webapp to read a epub extension file (Ebook)  
 > It's not complete  
-> Currently it just returns a raw page of the html content  
+> Currently it opens a book on the collection and make it possible to read it and navigate between the pages  
 > if the ebook has a protection like DRM, it will not work.  
 
 ### Installation  
@@ -14,13 +14,20 @@
     - Mac/Linux: `source ebook_reader_venv/bin/activate`  
 3. Install requirements: `pip install requirements.txt`  
 
-
 ### Get Started
-1. Put a file into the `/ebooks` folder and call it `book.epub`  
+1. Put your ebooks with .epub extension into the `/ebooks` folder.   
 2. run into the terminal: `flask run`  
 4. Go to the ip address provided by the terminal ( usually is http://127.0.0.1:5000 )  
     
 ### Changelog:  
+> 2025.02.05 - `version 0.0.6`  
+- Added pagination, now the book is opened with pages.
+- Added arrows to change page.
+- Added indicator for page index.
+- Optimized ebook loading.
+- Added some style.
+- added again `beautifulsoup4` package.
+
 > 2025.02.03 - `version 0.0.5`  
 - Added 404 and 500 error page.
 - Changed font.
@@ -54,3 +61,4 @@ _______
 
 - [Flask](https://flask.palletsprojects.com/en/stable/quickstart)  
 - [EbookLib](https://docs.sourcefabric.org/projects/ebooklib/en/latest/tutorial.html)  
+- [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/)  

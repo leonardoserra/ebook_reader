@@ -1,11 +1,11 @@
 ### Things i want to improve, fix or add to the app  
 > not in priority order  
   
-- feat: add pagination (not render all the book in one chrome page.)
+- ~~feat: add pagination (not render all the book in one chrome page.)~~
 - feat: adding more style to the page.
 - feat: show the file dimenison in the ebook list.
-- set a 404 page.
-- set a home button.
+- ~~set a 404 page.~~
+- ~~set a home button.~~
 - ~~fix: render images in the right spot~~
 - ~~feat: be able to open the book and images without storing them locally~~
 - ~~feat: make a starting page where you can choose between different books in your collection, not just one book.~~
