@@ -1,6 +1,6 @@
+import os
 import base64
 
-from os import walk
 from functools import cache
 
 from bs4 import BeautifulSoup
@@ -9,18 +9,20 @@ from bs4 import BeautifulSoup
 import ebooklib
 from ebooklib import epub
 
-EBOOKS_PATH = "./ebooks"
+EBOOKS_PATH = "static/ebooks/"
 
 
 def choose_book():
 
     ebooks = []
-    for _, __, filenames in walk(EBOOKS_PATH):
+    for _, __, filenames in os.walk(EBOOKS_PATH):
 
         ebooks.extend(filenames)
         break
 
-    ebooks = [e for e in ebooks if e.endswith(".epub")]
+    ebooks = [
+        {"name": e, "size": get_ebook_size(e)} for e in ebooks if e.endswith(".epub")
+    ]
 
     return ebooks
 
@@ -77,6 +79,7 @@ def extract_page(ebook_name: str, page_index: int) -> tuple[str, int]:
         for p in parsed_ebook.split("</div>")
         if p.strip().strip("&#13;")
     ]
+
     page_count = len(pages)
 
     page_content = BeautifulSoup(pages[page_index].strip(), "html.parser")
@@ -84,11 +87,55 @@ def extract_page(ebook_name: str, page_index: int) -> tuple[str, int]:
     return page_content, page_count
 
 
-def pages_range(page_index, page_count) -> tuple[int, int]:
+def pages_range(page_index: int, page_count: int) -> tuple[int, int]:
 
-    prev = page_index - 3
-    post = page_index + 3
+    prev: int = page_index - 3
+    post: int = page_index + 3
 
-    limits = (prev if prev >= 0 else 0, post if post < page_count else 0)
+    limits: tuple[int, int] = (
+        prev if prev >= 0 else 0,
+        post if post < page_count else 0,
+    )
 
     return limits
+
+
+# TODO
+def create_current_state(): ...  # def that will create the state.json if not existing.
+def update_current_state(): ...  # def that will save into the state.json the name.
+
+
+def add_fav_book(ebook_name: str) -> bool: ...  # this will set the fav bool to true.
+def remove_fav_book(ebook_name: str) -> bool: ...  # this will set the fav bool to true.
+
+
+def add_fav_page(
+    ebook_name: str, page_index: int
+) -> bool: ...  # this will add the index of the fav ebook pages to the state.json file.
+def remove_fav_page(
+    ebook_name: str, page_index: int
+) -> bool: ...  # this will add the index of the fav ebook pages to the state.json file.
+
+
+def rename_ebook(
+    ebook_name: str, new_name: str
+) -> bool: ...  # edit the filename in the menu.
+def delete_ebook(ebook_name: str) -> bool: ...  # delete an ebook from the folder.
+
+
+def get_ebook_size(ebook_path: str) -> str:
+
+    size: int = os.stat(EBOOKS_PATH + ebook_path).st_size
+    unit: str = ""
+
+    if size > 1024 * 1000:  # MB
+        size /= 1024 * 1000
+        unit = "MB"
+
+    elif size > 1024:  # KB
+        size /= 1024
+        unit = "KB"
+
+    size = str(size.__round__(3)) + unit
+
+    return size
