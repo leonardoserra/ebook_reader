@@ -20,7 +20,7 @@ def index():
         "ebooks": ebooks,
     }
     flash("test")
-    return render_template("index.j2", **ctx)
+    return render_template("index.html", **ctx)
 
 
 @app.route("/read/<ebook_name>/<int:page_index>")
@@ -39,10 +39,10 @@ def read_ebook(ebook_name="book.epub", page_index=1):
         "limits": ebook_manager.pages_range(page_index, page_count),
     }
 
-    return render_template("read.j2", **ctx)
+    return render_template("read.html", **ctx)
 
 
 @app.errorhandler(500)
 @app.errorhandler(404)
 def page_not_found(error):
-    return render_template("error.j2", error=error)
+    return render_template("error.html", error=error)

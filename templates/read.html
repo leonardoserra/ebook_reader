@@ -1,4 +1,4 @@
-{% extends "layout.j2"%}
+{% extends "base.html"%}
 {% block body %}
 <body>
     <div id="ebook-list-fixed-button">
@@ -6,7 +6,7 @@
     </div>
     {% if page_content %}
         <main>
-            {{page_content }}
+            {{page_content | safe }}
         </main>
         <footer>
 
