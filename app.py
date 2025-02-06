@@ -24,9 +24,11 @@ def index():
 
 
 @app.route("/read/<ebook_name>/<int:page_index>")
-def read_ebook(ebook_name="book.epub", page_index=1):
+def read_ebook(ebook_name="book.epub", page_index=0):
     try:
         page_content, page_count = ebook_manager.extract_page(ebook_name, page_index)
+
+        ebook_manager.set_ebook_state(ebook_name, page_index)
 
     except Exception as e:
         abort(e)

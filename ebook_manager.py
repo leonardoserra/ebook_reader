@@ -19,9 +19,17 @@ def choose_book():
 
         ebooks.extend(filenames)
         break
+    
+    init_state()
 
     ebooks = [
-        {"name": e, "size": get_ebook_size(e)} for e in ebooks if e.endswith(".epub")
+        {
+            "name": e,
+            "size": get_ebook_size(e),
+            "state": load_state(e)
+        } 
+        for e in ebooks 
+        if e.endswith(".epub")
     ]
 
     return ebooks
@@ -35,8 +43,6 @@ def extract_book_content(ebook_name: str) -> str:
     :param ebook_name: the name of the epub you wanna read.
 
     """
-
-    create_current_state()
 
     raw_ebook = epub.read_epub(f"{EBOOKS_PATH}/{ebook_name}")
 
@@ -102,17 +108,37 @@ def pages_range(page_index: int, page_count: int) -> tuple[int, int]:
     return limits
 
 
-def create_current_state() -> None:
+def init_state() -> None:
 
     if os.path.isfile(f"static/state.json"):
         return
 
     with open("static/state.json", "x") as file:
-        file.write(json.dumps({})) 
-        
+        file.write(json.dumps({}))
 
 
-def update_current_state(): ...  # def that will save into the state.json the name.
+def set_ebook_state(ebook_name: str, current_page: int) -> None:
+
+    state = None
+
+    with open("static/state.json", "r") as file:
+        state = json.load(file)
+
+        state[ebook_name] = current_page
+
+    with open("static/state.json", "w") as file:
+
+        file.write(json.dumps(state))
+
+
+def load_state(ebook_name:str)->int:
+
+
+    with open("static/state.json", "r") as file:
+        state = json.load(file)
+
+        return state[ebook_name]
+
 
 
 def add_fav_book(ebook_name: str) -> bool: ...  # this will set the fav bool to true.
