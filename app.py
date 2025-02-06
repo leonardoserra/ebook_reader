@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.secret_key = random.randbytes(8)
 
 
-@app.route("//")
+@app.route("/")
 def index():
     ebooks = ebook_manager.choose_book()
 
