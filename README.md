@@ -1,5 +1,5 @@
 # EBOOK READER (.epub)
-| 2025.01.31 - Version 0.0.6 |  
+| 2025.01.31 - Version 0.0.7 |  
 
 ### Description
 > This is a webapp to read a epub extension file (Ebook)  
@@ -20,10 +20,11 @@
 4. Go to the ip address provided by the terminal ( usually is http://127.0.0.1:5000 )  
     
 ### Changelog:  
-> 2025.??.?? - `version 0.0.7`  
+> 2025.02.06 - `version 0.0.7`  
 - Moved the `ebook/` folder into the `static/` folder.
 - Swapped the template extension to `.html` from `.j2`.
 - Showed file size in the ebook menu.
+- Now the ebook state is saved so when you close a book, it remembers where you stopped.
 
 
 
