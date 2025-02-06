@@ -62,3 +62,15 @@ _______
 - [Flask](https://flask.palletsprojects.com/en/stable/quickstart)  
 - [EbookLib](https://docs.sourcefabric.org/projects/ebooklib/en/latest/tutorial.html)  
 - [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/)  
+
+
+
+___
+
+  ![screenshot](/examples/home_ebook.png)
+___
+
+  ![screenshot](/examples/open_book.png)
+___
+
+  ![screenshot](/examples/pagina_1_ebook.png)
