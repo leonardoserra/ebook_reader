@@ -1,13 +1,13 @@
 # EBOOK READER (.epub)
 | 2025.01.31 - Version 0.0.6 |  
 
+### Description
 > This is a webapp to read a epub extension file (Ebook)  
 > It's not complete  
 > Currently it opens a book on the collection and make it possible to read it and navigate between the pages  
 > if the ebook has a protection like DRM, it will not work.  
 
 ### Installation  
-
 1. Create a venv: `python -m venv .ebook_reader_venv`  
 2. Activate the venv:
     - Windows: `.\.ebook_reader_venv\Sripts\activate`  
@@ -20,6 +20,13 @@
 4. Go to the ip address provided by the terminal ( usually is http://127.0.0.1:5000 )  
     
 ### Changelog:  
+> 2025.??.?? - `version 0.0.7`  
+- Moved the `ebook/` folder into the `static/` folder.
+- Swapped the template extension to `.html` from `.j2`.
+- Showed file size in the ebook menu.
+
+
+
 > 2025.02.05 - `version 0.0.6`  
 - Added pagination, now the book is opened with pages.
 - Added arrows to change page.

@@ -1,9 +1,21 @@
 ### Things i want to improve, fix or add to the app  
 > not in priority order  
   
+- feat: saving the current reading state per book, so when you open that book again is resumed from the last page read.  
+
+- feat: add the possibility to add or remove ebooks to a favourite list.  
+- feat: add the possibility to add or remove favourite pages of an ebook.  
+- feat: make rename a book possible.  
+- feat: make delete a book possible.  
+- feat: make possible to order the books in the menu.  
+
+- feat: adding more style to the page.  
+- feat: make it possible to press the whole left or right block to change page.
+___
+
+
+- ~~feat: show the file dimenison in the ebook list.~~
 - ~~feat: add pagination (not render all the book in one chrome page.)~~
-- feat: adding more style to the page.
-- feat: show the file dimenison in the ebook list.
 - ~~set a 404 page.~~
 - ~~set a home button.~~
 - ~~fix: render images in the right spot~~
