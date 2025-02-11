@@ -19,16 +19,12 @@ def choose_book():
 
         ebooks.extend(filenames)
         break
-    
+
     init_state()
 
     ebooks = [
-        {
-            "name": e,
-            "size": get_ebook_size(e),
-            "state": load_state(e)
-        } 
-        for e in ebooks 
+        {"name": e, "size": get_ebook_size(e), "state": load_state(e)}
+        for e in ebooks
         if e.endswith(".epub")
     ]
 
@@ -114,7 +110,7 @@ def init_state() -> None:
         return
 
     with open("static/state.json", "x") as file:
-        file.write(json.dumps({}))
+        file.write(json.dumps({"theme": 1}))
 
 
 def set_ebook_state(ebook_name: str, current_page: int) -> None:
@@ -131,14 +127,53 @@ def set_ebook_state(ebook_name: str, current_page: int) -> None:
         file.write(json.dumps(state))
 
 
-def load_state(ebook_name:str)->int:
+def load_state(ebook_name: str) -> int:
 
+    with open("static/state.json", "r") as file:
+        state = json.load(file)
+        if ebook_name in state:
+            return state[ebook_name]
+        else:
+            return 0
+
+
+def toggle_theme() -> bool:
+
+    theme = get_theme()
 
     with open("static/state.json", "r") as file:
         state = json.load(file)
 
-        return state[ebook_name]
+        state["theme"] = abs(theme - 1)
 
+    with open("static/state.json", "w") as file:
+
+        file.write(json.dumps(state))
+
+
+def get_theme() -> int:
+
+    with open("static/state.json", "r") as file:
+        state = json.load(file)
+        return state["theme"]
+
+
+def get_ebook_size(ebook_path: str) -> str:
+
+    size: int = os.stat(EBOOKS_PATH + ebook_path).st_size
+    unit: str = ""
+
+    if size > 1024 * 1000:  # MB
+        size /= 1024 * 1000
+        unit = "MB"
+
+    elif size > 1024:  # KB
+        size /= 1024
+        unit = "KB"
+
+    size = str(size.__round__(3)) + unit
+
+    return size
 
 
 def add_fav_book(ebook_name: str) -> bool: ...  # this will set the fav bool to true.
@@ -164,20 +199,3 @@ def rename_ebook(
 
 def delete_ebook(ebook_name: str) -> bool: ...  # delete an ebook from the folder.
 
-
-def get_ebook_size(ebook_path: str) -> str:
-
-    size: int = os.stat(EBOOKS_PATH + ebook_path).st_size
-    unit: str = ""
-
-    if size > 1024 * 1000:  # MB
-        size /= 1024 * 1000
-        unit = "MB"
-
-    elif size > 1024:  # KB
-        size /= 1024
-        unit = "KB"
-
-    size = str(size.__round__(3)) + unit
-
-    return size

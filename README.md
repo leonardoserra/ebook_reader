@@ -20,13 +20,14 @@
 4. Go to the ip address provided by the terminal ( usually is http://127.0.0.1:5000 )  
     
 ### Changelog:  
+> 2025.02.11 - `version 0.0.8`  
+- Added dark theme.  
+
 > 2025.02.06 - `version 0.0.7`  
 - Moved the `ebook/` folder into the `static/` folder.
 - Swapped the template extension to `.html` from `.j2`.
 - Showed file size in the ebook menu.
 - Now the ebook state is saved so when you close a book, it remembers where you stopped.
-
-
 
 > 2025.02.05 - `version 0.0.6`  
 - Added pagination, now the book is opened with pages.

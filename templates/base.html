@@ -6,5 +6,21 @@
         <title>{{page_title}}</title>
         <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
     </head>
-    {% block body %}{% endblock %}
+    {% set theme_class = 'light-mode' if theme else 'dark-mode' %}
+    <body class="{{theme_class}}">
+        <div id="theme-toggles-fixed" >
+            <a href="{{url_for('toggle_theme', origin=origin)}}">
+                {% if theme%}
+                <!-- sun -->
+                    Light Mode
+                    &#127774; 
+                {% else %}
+                <!-- moon -->
+                    Dark Mode
+                    &#127769;
+                {% endif %}
+            </a>
+        </div>
+        {% block body %}{% endblock %}
+    </body>
 </html>

@@ -1,5 +1,9 @@
 :root{
     --text-color:#353131;
+    --light-mode-text:#353131;
+    --light-mode-bg:#fff;
+    --dark-mode-text:#fff;
+    --dark-mode-bg:#353131;
 }
 
 *:not(main *){
@@ -14,11 +18,39 @@ html{
 }
 
 body{
+    font-size: 1.3rem;
     margin-top: 35px;
     padding-left: calc(100vw / 4);
     padding-right: calc(100vw / 4);
     color:var(--text-color);
     min-height: calc(100vh - 35px);
+}
+
+.dark-mode{
+    background-color: var(--dark-mode-bg);
+    color: var(--dark-mode-text);
+
+    a{
+        text-decoration: none;
+        color: var(--dark-mode-text);
+        &:active,
+        &:visited{
+            color: var(--dark-mode-text);
+        }
+    }
+}
+
+.light-mode{
+    background-color: var(--light-mode-bg);
+    color: var(--light-mode-text);
+    a{
+        text-decoration: none;
+        color: var(--light-mode-text);
+        &:active,
+        &:visited{
+            color: var(--light-mode-text);
+        }
+    }
 }
 
 
@@ -50,6 +82,11 @@ img{
     position: fixed;
     top:35px;
     left:calc(100vw / 24);
+}
+#theme-toggles-fixed{
+    position: fixed;
+    top:35px;
+    right:calc(100vw / 24);
 }
 
 .nice-border{
@@ -92,11 +129,3 @@ img{
     }
 }
 
-a{
-    text-decoration: none;
-    color: var(--text-color);
-    &:active,
-    &:visited{
-        color: var(--text-color);
-    }
-}

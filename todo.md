@@ -6,13 +6,13 @@
 - feat: make rename a book possible.  
 - feat: make delete a book possible.  
 - feat: make possible to order the books in the menu.  
-
 - feat: adding more style to the page.  
 - feat: make it possible to press the whole left or right block to change page.
 ___
 
 
-- ~~feat: saving the current reading state per book, so when you open that book again is resumed from the last page read. ~~ 
+- ~~feat: add darktheme or lighttheme.~~
+- ~~feat: saving the current reading state per book, so when you open that book again is resumed from the last page read.~~ 
 - ~~feat: show the file dimenison in the ebook list.~~
 - ~~feat: add pagination (not render all the book in one chrome page.)~~
 - ~~set a 404 page.~~
