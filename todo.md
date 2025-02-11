@@ -8,6 +8,7 @@
 - feat: make possible to order the books in the menu.  
 - feat: adding more style to the page.  
 - feat: make it possible to press the whole left or right block to change page.
+- feat: when changing theme maintain the scroll position on the page
 ___
 
 
