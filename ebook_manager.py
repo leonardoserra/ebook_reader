@@ -137,7 +137,7 @@ def load_state(ebook_name: str) -> int:
             return 0
 
 
-def toggle_theme() -> bool:
+def toggle_theme():
 
     theme = get_theme()
 
