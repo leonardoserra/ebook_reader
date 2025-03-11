@@ -1,5 +1,5 @@
 # EBOOK READER (.epub)
-| 2025.01.31 - Version 0.0.7 |  
+| 2025.03.10 - __version 0.0.9__ |  
 
 ### Description
 > This is a webapp to read a epub extension file (Ebook)  
@@ -20,6 +20,9 @@
 4. Go to the ip address provided by the terminal ( usually is http://127.0.0.1:5000 )  
     
 ### Changelog:  
+> 2025.03.10 - `version 0.0.9`  
+- Now the scroll Y position of a page in a specified book will be memorized, so when a book is reopened you will continue from the last point.
+
 > 2025.02.11 - `version 0.0.8`  
 - Added dark theme.  
 
