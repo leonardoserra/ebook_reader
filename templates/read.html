@@ -1,37 +1,61 @@
 {% extends "base.html"%}
 {% block body %}
-    <div id="ebook-list-fixed" class="nice-border">
-        <a class="epub-titles" href="{{url_for('index')}}">Back to Ebook List</a>
-    </div>
-    {% if page_content %}
-        <main>
-            {{page_content | safe }}
-        </main>
-        <footer>
 
+<div id="ebook-list-fixed" class="nice-border">
+    <a class="epub-titles" href="{{url_for('index')}}">
+        Back to Ebook List
+    </a>
+</div>
+
+{% if page_content %}
+<main>
+    <div class="container">
+        <div class="column left-col">
             {% if page_index %}
-                {% set prev = page_index - 1%}
-                <a id="prev-page-fixed-arrow" href="{{url_for('read_ebook', ebook_name=page_title, page_index=prev, scroll_y=0) }}">&xlarr;</a>
+            {% set prev = page_index - 1%}
+            <a 
+                id="prev-page-fixed-arrow"
+                href="{{
+                    url_for('read_ebook',
+                    ebook_name=page_title,
+                    page_index=prev,
+                    scroll_y=0) 
+                }}">
+                &xlarr;
+            </a>
             {% endif %}
-
-            {% if page_index < page_count - 1 %}
-                {% set next = page_index + 1 %}
-                <a id="next-page-fixed-arrow" href="{{url_for('read_ebook', ebook_name=page_title, page_index=next, scroll_y=0) }}">&xrarr;</a>
+        </div>
+        <div class="column center-col">
+            {{page_content | safe }}
+        </div>
+        <div class="column right-col">
+            {% if page_index < page_count - 1 %} {% set next=page_index + 1 %} 
+            <a 
+                id="next-page-fixed-arrow"
+                href="{{
+                    url_for('read_ebook',
+                    ebook_name=page_title,
+                    page_index=next,
+                    scroll_y=0) 
+                }}">
+                &xrarr;
+            </a>
             {% endif %}
-            
-            {#
-                <ul class="pages-navigation">
-                    {% for p in range(limits[0], limits[1]) %}
-                        {% set current_page = 'current-page' if p == page_index else '' %}
-                        <li> 
-                            <a class='{{current_page}}' href="{{url_for('read_ebook', ebook_name=page_title, page_index=p) }}">
-                                pag.{{p}}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            #}
+        </div>
+    </div>
+    
+</main>
+<footer>
+    <div class="container">
+        <div class="column left-col">
+            {{ page_index * 100 / page_count |round(0)|int}}%
+        </div>
+        <div class="column center-col"></div>
+        <div class="column right-col">
+            {{ page_index }} / {{ page_count }}
+        </div>
+    </div>
+</footer>
+{% endif %}
 
-        </footer>
-    {% endif %}
 {% endblock %}
