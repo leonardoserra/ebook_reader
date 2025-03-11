@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{page_title}}</title>
+        <title id="bookname">{{page_title}}</title>
         <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
     </head>
     {% set theme_class = 'light-mode' if theme else 'dark-mode' %}
@@ -22,5 +22,6 @@
             </a>
         </div>
         {% block body %}{% endblock %}
+        <script src="{{url_for('static', filename='script/scrollbarWatcher.js')}}"></script>
     </body>
 </html>

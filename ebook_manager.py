@@ -78,10 +78,13 @@ def extract_page(ebook_name: str, page_index: int) -> tuple[str, int]:
 
     parsed_ebook = extract_book_content(ebook_name)
 
+    # making pagination
+    cre = "&#13;" # carriage return html entity
+
     pages = [
-        p.strip().strip("&#13;")
+        p.strip().strip(cre)
         for p in parsed_ebook.split("</div>")
-        if p.strip().strip("&#13;")
+        if p.strip().strip(cre)
     ]
 
     page_count = len(pages)
@@ -110,31 +113,39 @@ def init_state() -> None:
         return
 
     with open("static/state.json", "x") as file:
-        file.write(json.dumps({"theme": 1}))
+        state = json.dumps({"theme": 1, "ebooks": {}})
+
+        file.write(state)
 
 
-def set_ebook_state(ebook_name: str, current_page: int) -> None:
+def set_state(ebook_name: str, current_page: int = None, scroll_y = None) -> None:
 
     state = None
 
     with open("static/state.json", "r") as file:
         state = json.load(file)
 
-        state[ebook_name] = current_page
+        state["ebooks"].setdefault(ebook_name, {'current_page': 0, 'scroll_y':0})
+        if current_page:
+            state["ebooks"][ebook_name]["current_page"] = current_page
+
+        if scroll_y:
+            print(scroll_y)
+            state["ebooks"][ebook_name]["scroll_y"] = scroll_y
 
     with open("static/state.json", "w") as file:
 
         file.write(json.dumps(state))
 
 
-def load_state(ebook_name: str) -> int:
+def load_state(ebook_name: str) -> dict:
 
     with open("static/state.json", "r") as file:
         state = json.load(file)
-        if ebook_name in state:
-            return state[ebook_name]
+        if ebook_name in state['ebooks']:
+            return state['ebooks'][ebook_name]
         else:
-            return 0
+            return {}
 
 
 def toggle_theme():
@@ -171,7 +182,7 @@ def get_ebook_size(ebook_path: str) -> str:
         size /= 1024
         unit = "KB"
 
-    size = str(size.__round__(3)) + unit
+    size = str(round(size, 3)) + unit
 
     return size
 
@@ -198,4 +209,3 @@ def rename_ebook(
 
 
 def delete_ebook(ebook_name: str) -> bool: ...  # delete an ebook from the folder.
-

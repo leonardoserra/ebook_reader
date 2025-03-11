@@ -6,7 +6,7 @@
         <ul id="epub-list">
         {% for ebook in ebooks %}
             <li>
-                <a class="epub-titles" href="{{url_for('read_ebook', ebook_name=ebook.name, page_index=ebook.state )}}">{{ebook.name}}</a>
+                <a class="epub-titles" href="{{url_for('read_ebook', ebook_name=ebook.name, page_index=ebook.state.current_page )}}">{{ebook.name}}</a>
                 <span>
                     {{ebook.size}}
                 </span>

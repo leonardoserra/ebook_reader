@@ -11,12 +11,12 @@
 
             {% if page_index %}
                 {% set prev = page_index - 1%}
-                <a id="prev-page-fixed-arrow" href="{{url_for('read_ebook', ebook_name=page_title, page_index=prev) }}">&xlarr;</a>
+                <a id="prev-page-fixed-arrow" href="{{url_for('read_ebook', ebook_name=page_title, page_index=prev, scroll_y=0) }}">&xlarr;</a>
             {% endif %}
 
             {% if page_index < page_count - 1 %}
                 {% set next = page_index + 1 %}
-                <a id="next-page-fixed-arrow" href="{{url_for('read_ebook', ebook_name=page_title, page_index=next) }}">&xrarr;</a>
+                <a id="next-page-fixed-arrow" href="{{url_for('read_ebook', ebook_name=page_title, page_index=next, scroll_y=0) }}">&xrarr;</a>
             {% endif %}
             
             {#
