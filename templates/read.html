@@ -1,12 +1,6 @@
 {% extends "base.html"%}
 {% block body %}
-
-<div id="ebook-list-fixed" class="nice-border">
-    <a class="epub-titles" href="{{url_for('index')}}">
-        Back to Ebook List
-    </a>
-</div>
-
+{% include './components/back-to-menu.html' %}
 {% if page_content %}
 <main>
     <div class="container">
