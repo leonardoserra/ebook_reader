@@ -1,5 +1,5 @@
 # EBOOK READER (.epub)
-| 2025.03.10 - __version 0.0.10__ |  
+| 2025.03.11 - __version 0.0.10__ |  
 
 ### Description
 > This is a webapp to read a epub extension file (Ebook)  
