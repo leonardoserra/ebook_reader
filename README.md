@@ -88,4 +88,7 @@ ___
   ![screenshot](/examples/open_book.png)
 ___
 
-  ![screenshot](/examples/pagina_1_ebook.png)
+  ![screenshot](/examples/dark_mode.png)
+___
+
+  ![screenshot](/examples/error.png)

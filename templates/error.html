@@ -1,7 +1,12 @@
 {% extends "base.html"%}
 {% block body %}
-    <nav id="ebooks-menu">
+<div class="container">
+    <nav id="error-message" class="column center-col">
         <h3>Error {{error}}</h3>
-        <a class="epub-titles nice-border" href="{{url_for('index')}}">- Back to Ebook List</a>
+        <div>
+            <a class="epub-titles nice-border" href="{{url_for('index')}}">- Back to Ebook List</a>
+        </div>
     </nav>
+
+</div>
 {% endblock %}

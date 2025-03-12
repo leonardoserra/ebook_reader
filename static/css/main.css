@@ -66,9 +66,18 @@ img{
     max-width: 100%;
 }
 
-#ebooks-menu > h3{
-    margin: 7px auto;
-    max-width: 500px;
+#ebooks-menu { 
+    margin-top:30px;
+    h3 {
+        margin: 7px auto;
+        max-width: 500px;
+        min-width: 200px;
+    }
+}
+
+#error-message > h3{
+    margin: 100px 0 50px 0;
+    max-width: 800px;
     min-width: 200px;
 }
 
