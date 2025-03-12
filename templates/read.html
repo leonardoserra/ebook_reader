@@ -3,7 +3,7 @@
 {% include './components/back-to-menu.html' %}
 {% if page_content %}
 <main>
-    <div class="container">
+    <div class="container relative">
         <div class="column left-col">
             {% if page_index %}
             {% set prev = page_index - 1%}
@@ -20,11 +20,12 @@
             {% endif %}
         </div>
         <div class="column center-col">
-            {{page_content | safe }}
+            {{ page_content | safe }}
         </div>
         <div class="column right-col">
-            {% if page_index < page_count - 1 %} {% set next=page_index + 1 %} 
-            <a 
+            {% if page_index < page_count - 1 %}
+            {% set next=page_index + 1 %} 
+            <a
                 id="next-page-fixed-arrow"
                 href="{{
                     url_for('read_ebook',
@@ -42,11 +43,15 @@
 <footer>
     <div class="container">
         <div class="column left-col">
-            {{ page_index * 100 / page_count |round(0)|int}}%
+            <p id="completion-percentage">
+                {{ ((page_index + 1) * 100 / page_count) | int }}%
+            </p>
         </div>
         <div class="column center-col"></div>
         <div class="column right-col">
-            {{ page_index }} / {{ page_count }}
+            <p id="page-indicator">
+                {{ page_index + 1}} / {{ page_count }}
+            </p>
         </div>
     </div>
 </footer>

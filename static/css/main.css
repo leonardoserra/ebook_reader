@@ -20,19 +20,18 @@ html{
 
 .container{
     display: flex;
-
+    justify-content: space-between;
     font-size: 1.3rem;
     margin-top: 35px;
-    color:var(--text-color);
-    min-height: calc(100vh - 35px);
 
     .left-col,
     .right-col{
-        width: calc(100vw / 5);
+        width: calc((100vw / 12) * 3);
     }
     .center-col{
         margin: auto;
-        width: calc(100vw / 3);
+        margin-bottom: 0;
+        width: calc((100% / 12) * 6);
     }
 }
 
@@ -63,7 +62,6 @@ html{
     }
 }
 
-
 img{
     max-width: 100%;
 }
@@ -90,12 +88,14 @@ img{
 
 #ebook-list-fixed{
     position: fixed;
+    z-index: 100;
     top:35px;
     left:calc(100vw / 24);
 }
 
 #theme-toggles-fixed{
     position: fixed;
+    z-index: 100;
     top:35px;
     right:calc(100vw / 24);
 }
@@ -110,17 +110,41 @@ img{
     text-decoration: none;
 }
 
+.relative{
+    position: relative;
+}
+
 #prev-page-fixed-arrow,
 #next-page-fixed-arrow{
     position: fixed;
-    top:50vh;
-    scale:3;
+    top:45vh;
+    font-size: 66px;
     text-decoration: none;
 }
+
 #prev-page-fixed-arrow{
     left:calc(100vw / 12);
+    
 }
+
 #next-page-fixed-arrow{
+    right:calc(100vw / 12);
+}
+
+#completion-percentage,
+#page-indicator{
+    position: fixed;
+    z-index: -1;
+    bottom:50px;
+    scale:1;
+    text-decoration: none;
+}
+
+#completion-percentage{
+    left:calc(100vw / 12);
+}
+
+#page-indicator{
     right:calc(100vw / 12);
 }
 
