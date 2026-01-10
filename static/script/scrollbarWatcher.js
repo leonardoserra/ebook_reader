@@ -11,7 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const scrollY = this.scrollY;
         const response = await setScrollY(bookname, scrollY);
-
+        if (response > 299){
+            console.warn(`scroll_y maybe not saved correctly: ${response}`)
+        }
     });
 
 });
@@ -54,6 +56,6 @@ async function setScrollY(ebookName, scrollY) {
     }
 
     const result = await response.json();
-
-    return 201;
+    console.log(result)
+    return result?.status;
 }
