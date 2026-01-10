@@ -78,20 +78,20 @@ def toggle_theme():
     return redirect(origin)
 
 
+# FIXME who calls this??
 @app.route("/load-state")
 def load_json():
     with open("./static/state.json", "r") as file:
         return file.readlines()
 
 
+# FIXME who calls this??
 @app.route("/save-state")
-def save_state() -> str:
+def save_state() -> None:
     state = request.form.get("state")
     if state:
         with open("./static/state.json", "w") as file:
-            file.write(json.dumps(state))
-
-    return ""
+            json.dump(state, file)
 
 
 @app.route("/set-y-axis", methods=["POST"])
