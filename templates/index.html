@@ -5,9 +5,9 @@
         <h3>Choose a book to read:</h3>
         <ul id="epub-list">
         {% for ebook in ebooks %}
-        {% set state = ebook.state.current_page if ebook.state.get('current_page') else 0 %}
+        {% set page_index = ebook.state.current_page if ebook.state.get('current_page') else 0 %}
             <li>
-                <a class="epub-titles" href="{{url_for('read_ebook', ebook_name=ebook.name, page_index=state )}}">{{ebook.name}}</a>
+                <a class="epub-titles" href="{{url_for('read_ebook', ebook_name=ebook.name, page_index=page_index )}}">{{ebook.name}}</a>
                 <span>
                     {{ebook.size}}
                 </span>
