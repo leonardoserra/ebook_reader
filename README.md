@@ -1,6 +1,9 @@
 # EBOOK READER (.epub)
 | 2025.03.11 - __version 0.0.10__ |  
 
+# Python version
+`3.14.2`
+
 ### Description
 > This is a webapp to read a epub extension file (Ebook)  
 > It's not complete  
@@ -77,8 +80,6 @@ _______
 - [Flask](https://flask.palletsprojects.com/en/stable/quickstart)  
 - [EbookLib](https://docs.sourcefabric.org/projects/ebooklib/en/latest/tutorial.html)  
 - [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/)  
-
-
 
 ___
 
