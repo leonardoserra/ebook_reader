@@ -13,7 +13,6 @@ EBOOKS_PATH = "static/ebooks/"
 
 
 def choose_book():
-
     ebooks = []
     for _, __, filenames in os.walk(EBOOKS_PATH):
 
@@ -35,9 +34,7 @@ def choose_book():
 def extract_book_content(ebook_name: str) -> str:
     """
     Given a epub name it opens, loads and pass the value to the main route.
-
     :param ebook_name: the name of the epub you wanna read.
-
     """
 
     raw_ebook = epub.read_epub(f"{EBOOKS_PATH}/{ebook_name}")
@@ -75,11 +72,10 @@ def extract_book_content(ebook_name: str) -> str:
 
 @cache
 def extract_page(ebook_name: str, page_index: int) -> tuple[str, int]:
-
     parsed_ebook = extract_book_content(ebook_name)
 
     # making pagination
-    cre = "&#13;" # carriage return html entity
+    cre = "&#13;"  # carriage return html entity
 
     pages = [
         p.strip().strip(cre)
@@ -95,7 +91,6 @@ def extract_page(ebook_name: str, page_index: int) -> tuple[str, int]:
 
 
 def pages_range(page_index: int, page_count: int) -> tuple[int, int]:
-
     prev: int = page_index - 3
     post: int = page_index + 3
 
@@ -118,19 +113,20 @@ def init_state() -> None:
         file.write(state)
 
 
-def set_state(ebook_name: str, current_page: int = None, scroll_y = None) -> None:
-
+def set_state(
+    ebook_name: str, current_page: int | None = None, scroll_y: int | None = None
+) -> None:
     state = None
 
     with open("static/state.json", "r") as file:
         state = json.load(file)
 
-        state["ebooks"].setdefault(ebook_name, {'current_page': 0, 'scroll_y':0})
+        state["ebooks"].setdefault(ebook_name, {"current_page": 0, "scroll_y": 0})
+
         if current_page:
             state["ebooks"][ebook_name]["current_page"] = current_page
 
         if scroll_y:
-            print(scroll_y)
             state["ebooks"][ebook_name]["scroll_y"] = scroll_y
 
     with open("static/state.json", "w") as file:
@@ -139,17 +135,15 @@ def set_state(ebook_name: str, current_page: int = None, scroll_y = None) -> Non
 
 
 def load_state(ebook_name: str) -> dict:
-
     with open("static/state.json", "r") as file:
         state = json.load(file)
-        if ebook_name in state['ebooks']:
-            return state['ebooks'][ebook_name]
+        if ebook_name in state["ebooks"]:
+            return state["ebooks"][ebook_name]
         else:
             return {}
 
 
 def toggle_theme():
-
     theme = get_theme()
 
     with open("static/state.json", "r") as file:
@@ -163,26 +157,27 @@ def toggle_theme():
 
 
 def get_theme() -> int:
-
     with open("static/state.json", "r") as file:
         state = json.load(file)
         return state["theme"]
 
 
 def get_ebook_size(ebook_path: str) -> str:
+    byte_size: float = float(os.stat(EBOOKS_PATH + ebook_path).st_size)
 
-    size: int = os.stat(EBOOKS_PATH + ebook_path).st_size
-    unit: str = ""
+    unit: str = "B"
 
-    if size > 1024 * 1000:  # MB
-        size /= 1024 * 1000
+    KB: int = 1024
+    MB: int = KB * 1000
+
+    if byte_size >= MB:  # MB
+        byte_size /= MB
         unit = "MB"
-
-    elif size > 1024:  # KB
-        size /= 1024
+    elif byte_size >= KB:  # KB
+        byte_size /= KB
         unit = "KB"
 
-    size = str(round(size, 3)) + unit
+    size: str = str(round(byte_size, 3)) + unit
 
     return size
 
