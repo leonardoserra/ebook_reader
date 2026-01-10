@@ -125,12 +125,11 @@ def set_state(
         if current_page is not None:
             state["ebooks"][ebook_name]["current_page"] = current_page
 
-        if scroll_y is not None:
+        if scroll_y:
             state["ebooks"][ebook_name]["scroll_y"] = scroll_y
 
     with open("static/state.json", "w") as file:
-
-        file.write(json.dumps(state))
+        json.dump(state, file)
 
 
 def load_state(ebook_name: str) -> dict:
@@ -151,8 +150,7 @@ def toggle_theme():
         state["theme"] = abs(theme - 1)
 
     with open("static/state.json", "w") as file:
-
-        file.write(json.dumps(state))
+        json.dump(state, file)
 
 
 def get_theme() -> int:
