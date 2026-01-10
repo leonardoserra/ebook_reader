@@ -2,7 +2,6 @@ import os
 import base64
 import json
 from functools import cache
-
 from bs4 import BeautifulSoup
 
 # from os import path # con questo potresti prendere la dimensione dei file e mostrarla.
@@ -123,10 +122,10 @@ def set_state(
 
         state["ebooks"].setdefault(ebook_name, {"current_page": 0, "scroll_y": 0})
 
-        if current_page:
+        if current_page is not None:
             state["ebooks"][ebook_name]["current_page"] = current_page
 
-        if scroll_y:
+        if scroll_y is not None:
             state["ebooks"][ebook_name]["scroll_y"] = scroll_y
 
     with open("static/state.json", "w") as file:
